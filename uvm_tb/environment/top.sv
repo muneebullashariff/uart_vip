@@ -18,3 +18,18 @@
 //  under the License.
 //
 //  ###########################################################################
+
+module top;
+ 
+//------------------------------------------------------------------------------
+//  Description:import package files
+// -----------------------------------------------------------------------------   
+  import uvm_pkg::*;
+  
+  initial
+    begin
+      uvm_config_db#(virtual uart_iff)::set(null,"*","VIF_0",if0);
+	run_test();
+    end
+endmodule
+  
