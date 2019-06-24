@@ -28,7 +28,12 @@ module top;
   
   initial
     begin
-      uvm_config_db#(virtual uart_iff)::set(null,"*","VIF_0",if0);
+ //------------------------------------------------------------------------------
+ //Description:setting the virtual interface and giving the name uart_iff
+//------------------------------------------------------------------------------	    
+	    uvm_config_db#(virtual uart_iff)::set(null,"*","VIF_0",if0);
+//This will run the test class inside top	    
+	    
 	run_test();
     end
 endmodule
