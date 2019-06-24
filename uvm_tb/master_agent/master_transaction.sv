@@ -18,3 +18,6 @@
 //  under the License.
 //
 //  ###########################################################################
+
+class master_transaction extends uvm_transaction;
+
