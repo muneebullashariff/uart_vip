@@ -19,8 +19,8 @@
 //
 //  ###########################################################################
 //   Use of Include Guards
-`ifndef _slave_driver.sv_INCLUDED_
-`define _slave_driver.sv_INCLUDED_
+//`ifndef _slave_driver.sv_INCLUDED_
+//`define _slave_driver.sv_INCLUDED_
 
 //-------------------------------------------------------------------------------------------------
 //class:slave_driver

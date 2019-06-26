@@ -1,0 +1,95 @@
+# vsim -voptargs="+acc=rnb" -l uart_sim.log "+UVM_VERBOSITY=UVM_HIGH" -novopt top -c -do "log -r /*; add wave -r /*; run -all;" "+UVM_TESTNAME=base_test" -wlf waveform.wlf 
+# Start time: 16:19:06 on Jun 26,2019
+# ** Warning: (vsim-8891) All optimizations are turned off because the -novopt switch is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features please see the User's Manual section on Preserving Object Visibility with vopt.
+# //  Questa Sim
+# //  Version 10.6c win32 Jul 26 2017
+# //
+# //  Copyright 1991-2017 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Refreshing C:/Users/Moon/uart_vip/tb_files/sim/work.top
+# Refreshing C:/Users/Moon/uart_vip/tb_files/sim/work.test_pkg
+# Loading sv_std.std
+# Loading mtiUvm.uvm_pkg
+# Loading work.test_pkg
+# Loading work.top
+# Loading mtiUvm.questa_uvm_pkg
+# Loading C:/questasim_10.6c/uvm-1.1d\win32\uvm_dpi.dll
+# log -r /*
+#  add wave -r /*
+#  run -all
+# ----------------------------------------------------------------
+# UVM-1.1d
+# (C) 2007-2013 Mentor Graphics Corporation
+# (C) 2007-2013 Cadence Design Systems, Inc.
+# (C) 2006-2013 Synopsys, Inc.
+# (C) 2011-2013 Cypress Semiconductor Corp.
+# ----------------------------------------------------------------
+# 
+#   ***********       IMPORTANT RELEASE NOTES         ************
+# 
+#   You are using a version of the UVM library that has been compiled
+#   with `UVM_NO_DEPRECATED undefined.
+#   See http://www.eda.org/svdb/view.php?id=3313 for more details.
+# 
+#   You are using a version of the UVM library that has been compiled
+#   with `UVM_OBJECT_MUST_HAVE_CONSTRUCTOR undefined.
+#   See http://www.eda.org/svdb/view.php?id=3770 for more details.
+# 
+#       (Specify +UVM_NO_RELNOTES to turn off this notice)
+# 
+# UVM_INFO verilog_src/questa_uvm_pkg-1.2/src/questa_uvm_pkg.sv(215) @ 0: reporter [Questa UVM] QUESTA_UVM-1.2.3
+# UVM_INFO verilog_src/questa_uvm_pkg-1.2/src/questa_uvm_pkg.sv(217) @ 0: reporter [Questa UVM]  questa_uvm::init(+struct)
+# UVM_INFO @ 0: reporter [RNTST] Running test base_test...
+# UVM_INFO verilog_src/questa_uvm_pkg-1.2/src/questa_uvm_pkg.sv(277) @ 0: reporter [Questa UVM] End Of Elaboration
+# UVM_INFO @ 0: reporter [UVMTOP] UVM testbench topology:
+# ----------------------------------------------------------------
+# Name                         Type                    Size  Value
+# ----------------------------------------------------------------
+# uvm_test_top                 base_test               -     @469 
+#   envh                       tb                      -     @483 
+#     rtop                     slave_agent_top         -     @498 
+#       ragent[0]              slave_agent             -     @619 
+#         drvh                 slave_driver            -     @643 
+#           rsp_port           uvm_analysis_port       -     @658 
+#           seq_item_port      uvm_seq_item_pull_port  -     @650 
+#         m_sequencer          slave_sequencer         -     @666 
+#           rsp_export         uvm_analysis_export     -     @673 
+#           seq_item_export    uvm_seq_item_pull_imp   -     @767 
+#           arbitration_queue  array                   0     -    
+#           lock_queue         array                   0     -    
+#           num_last_reqs      integral                32    'd1  
+#           num_last_rsps      integral                32    'd1  
+#         monh                 slave_monitor           -     @628 
+#           monitor_port       uvm_analysis_port       -     @635 
+#     v_seqrh                  virtual_sequencer       -     @505 
+#       rsp_export             uvm_analysis_export     -     @512 
+#       seq_item_export        uvm_seq_item_pull_imp   -     @606 
+#       arbitration_queue      array                   0     -    
+#       lock_queue             array                   0     -    
+#       num_last_reqs          integral                32    'd1  
+#       num_last_rsps          integral                32    'd1  
+#     wtop                     master_agent_top        -     @491 
+#       wagent[0]              master_agent            -     @793 
+#         drvh                 master_driver           -     @817 
+#           rsp_port           uvm_analysis_port       -     @832 
+#           seq_item_port      uvm_seq_item_pull_port  -     @824 
+#         m_sequencer          master_sequencer        -     @840 
+#           rsp_export         uvm_analysis_export     -     @847 
+#           seq_item_export    uvm_seq_item_pull_imp   -     @941 
+#           arbitration_queue  array                   0     -    
+#           lock_queue         array                   0     -    
+#           num_last_reqs      integral                32    'd1  
+#           num_last_rsps      integral                32    'd1  
+#         monh                 master_monitor          -     @802 
+#           monitor_port       uvm_analysis_port       -     @809 
+# ----------------------------------------------------------------
+# 

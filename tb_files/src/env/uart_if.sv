@@ -20,8 +20,8 @@
 //  ###########################################################################
 
 //  Use of Include Guards
-`ifndef _uart_if.sv_INCLUDED_
-`define _uart_if.sv_INCLUDED_
+//`ifndef _uart_if.sv_INCLUDED_
+//`define _uart_if.sv_INCLUDED_
 
 
 

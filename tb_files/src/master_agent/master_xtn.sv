@@ -19,8 +19,8 @@
 //
 //  ###########################################################################
 //   Use of Include Guards
-`ifndef _master_xtn.sv_INCLUDED_
-`define _master_xtn.sv_INCLUDED_
+//`ifndef _master_xtn.sv_INCLUDED_
+//`define _master_xtn.sv_INCLUDED_
 
 class master_xtn extends uvm_sequence_item;
 

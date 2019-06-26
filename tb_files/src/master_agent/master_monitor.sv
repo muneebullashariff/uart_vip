@@ -15,8 +15,8 @@
 //
 //  ################################################################################################
 //  2) Use of Include Guards
-`ifndef _master_monitor.sv_INCLUDED_
-`define _master_monitor.sv_INCLUDED_
+//`ifndef _master_monitor.sv_INCLUDED_
+//`define _master_monitor.sv_INCLUDED_
 
 //------------------------------------------------------------------------------------------------//
 //  Class: master_monitor

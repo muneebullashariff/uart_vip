@@ -10,7 +10,7 @@ system "vlib work";
 system "vmap work work";
 
 ## vlog will compile all the files in the mentioned path  and  resultant log files are created in work directory 
-system "vlog -work work -sv +incdir+../master_agent +incdir+../slave +incdir+../environment +incdir+../test ../test/test_pkg.sv ../environment/uart_if.sv ../environment/top.sv ";
+system "vlog -work work -sv +incdir+../src/master_agent +incdir+../src/slave_agent +incdir+../src/env +incdir+../src/test ../src/test/test_pkg.sv ../src/env/uart_if.sv ../src/top/top.sv ";
 
 
 ## The above compiled files are simulated here 

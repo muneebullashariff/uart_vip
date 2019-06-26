@@ -15,8 +15,8 @@
 //
 //  ################################################################################################
 //  2) Use of Include Guards
-`ifndef _master_agent_top.sv_INCLUDED_
-`define _master_agent_top.sv_INCLUDED_
+//`ifndef _master_agent_top.sv_INCLUDED_
+//`define _master_agent_top.sv_INCLUDED_
 
 //------------------------------------------------------------------------------------------------//
 //  Master_agent_top is extended from uvm_env. It contains the agent. Configuration of 

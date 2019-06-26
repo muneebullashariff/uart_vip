@@ -21,42 +21,42 @@
 //  ###########################################################################
 
 // Use of Include Guards
-`ifndef _test_pkg.sv_INCLUDED_
-`define _test_pkg.sv_INCLUDED_
+//`ifndef _test_pkg.sv_INCLUDED_
+//`define _test_pkg.sv_INCLUDED_
 
 //------------------------------------------------------------------------------------------------
 //package:test_pkg
-//including allthe package files,,macrocs,master_files,slave_files,environment,test,scoreboard
+//including allthe package files,,macrocs,master_files,slave_files,env,test,scoreboard
 //------------------------------------------------------------------------------------------------
 package test_pkg;
 
 
   import uvm_pkg::*;
   `include "uvm_macros.svh"
-  `include "../master_agent/master_xtn.sv"
-  `include "../master_agent/master_agent_config.sv"
-  `include "../slave/slave_agent_config.sv"
-  `include "../environment/env_config.sv"
-  `include "../master_agent/master_driver.sv"
-  `include "../master_agent/master_monitor.sv"
-  `include "../master_agent/master_sequencer.sv"
+  `include "../src/master_agent/master_xtn.sv"
+  `include "../src/master_agent/master_agent_config.sv"
+  `include "../src/slave_agent/slave_agent_config.sv"
+  `include "../src/env/env_config.sv"
+  `include "../src/master_agent/master_driver.sv"
+  `include "../src/master_agent/master_monitor.sv"
+  `include "../src/master_agent/master_sequencer.sv"
   
-  `include "../master_agent/master_agent.sv"
-  `include "../master_agent/master_agent_top.sv"
-  `include "../master_agent/master_seqs.sv"
+  `include "../src/master_agent/master_agent.sv"
+  `include "../src/master_agent/master_agent_top.sv"
+  `include "../src/master_agent/master_seqs.sv"
 
-  `include "../slave/slave_xtn.sv"
-  `include "../slave/slave_monitor.sv"
-  `include "../slave/slave_sequencer.sv"
-  `include "../slave/slave_seqs.sv"
-  `include "../slave/slave_driver.sv"
-  `include "../slave/slave_agent.sv"
-  `include "../slave/slave_agent_top.sv"
+  `include "../src/slave_agent/slave_xtn.sv"
+  `include "../src/slave_agent/slave_monitor.sv"
+  `include "../src/slave_agent/slave_sequencer.sv"
+  `include "../src/slave_agent/slave_seqs.sv"
+  `include "../src/slave_agent/slave_driver.sv"
+  `include "../src/slave_agent/slave_agent.sv"
+  `include "../src/slave_agent/slave_agent_top.sv"
 
-  `include "../environment/virtual_sequencer.sv"
-  `include "../environment/virtual_seqs.sv"
+  `include "../src/env/virtual_sequencer.sv"
+  `include "../src/env/virtual_seqs.sv"
 
-  `include "../environment/tb.sv"
+  `include "../src/env/tb.sv"
 
 
   //`include "scoreboard.sv"

@@ -15,8 +15,8 @@
 //
 //  ################################################################################################
 // Use of Include Guards
-`ifndef _master_sequencer.sv_INCLUDED_
-`define _master_sequencer.sv_INCLUDED_
+//`ifndef _master_sequencer.sv_INCLUDED_
+//`define _master_sequencer.sv_INCLUDED_
 
 //------------------------------------------------------------------------------------------------//
 //  Class: master_sequencer

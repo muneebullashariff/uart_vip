@@ -20,8 +20,8 @@
 //  ###########################################################################
 
 //   Use of Include Guards
-`ifndef _virtual_seqs.sv_INCLUDED_
-`define _virtual_seqs.sv_INCLUDED_
+//`ifndef _virtual_seqs.sv_INCLUDED_
+//`define _virtual_seqs.sv_INCLUDED_
 
 
 //------------------------------------------------------------------------------------------------//
@@ -33,8 +33,8 @@ class virtual_sequencer extends uvm_sequencer #(uvm_sequence_item);
 
 	`uvm_component_utils(virtual_sequencer)
 	
-	wr_sequencer wr_seqrh[];
-	rd_sequencer rd_seqrh[];
+	master_sequencer master_seqrh[];
+	slave_sequencer slave_seqrh[];
 
 	env_config e_cfg;
 
@@ -54,6 +54,6 @@ endclass
 	
 		if(!uvm_config_db #(env_config)::get(this,"","env_config",e_cfg))
 			`uvm_fatal("CONFIG","Cannot get() e_cfg from uvm_congig_db. Have you set it?")
-			wr_seqrh=new[e_cfg.no_of_wagent];
-			rd_seqrh=new[e_cfg.no_of_ragent];
+			master_seqrh=new[e_cfg.no_of_wagent];
+			slave_seqrh=new[e_cfg.no_of_ragent];
 	endfunction

@@ -1,4 +1,4 @@
-1) License copy
+// License copy
 //  ###########################################################################
 //
 //  Licensed to the Apache Software Foundation (ASF) under one
@@ -20,9 +20,9 @@
 //
 //  ###########################################################################
 
-2) Use of Include Guards
-`ifndef _virtual_seqs.sv_INCLUDED_
-`define _virtual_seqs.sv_INCLUDED_
+// Use of Include Guards
+//`ifndef _virtual_seqs.sv_INCLUDED_
+//`define _virtual_seqs.sv_INCLUDED_
 
 
 //-----------------------------------------------------------------------------
@@ -58,7 +58,7 @@ endclass
 //-----------------------------------------------------------------------------
 function vbase_seq::new(string name="vbase_seq");
 		super.new(name);
-	endfunction:vbase_seq
+	endfunction
 
 
   //---------------------------------------------------------------------------------------------

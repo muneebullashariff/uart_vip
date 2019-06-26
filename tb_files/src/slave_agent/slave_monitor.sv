@@ -19,8 +19,8 @@
 //
 //  ###############################################################################################
 //   Use of Include Guards
-`ifndef _slave_monitor.sv_INCLUDED_
-`define _slave_monitor.sv_INCLUDED_
+//`ifndef _slave_monitor.sv_INCLUDED_
+//`define _slave_monitor.sv_INCLUDED_
 
 //-------------------------------------------------------------------------------------------------
 //class:slave_monitor

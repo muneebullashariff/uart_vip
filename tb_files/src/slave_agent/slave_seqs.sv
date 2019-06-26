@@ -16,8 +16,8 @@
 //  ################################################################################################
 //
 //   Use of Include Guards
-`ifndef _slave_seqs.sv_INCLUDED_
-`define _slave_seqs.sv_INCLUDED_
+//`ifndef _slave_seqs.sv_INCLUDED_
+//`define _slave_seqs.sv_INCLUDED_
 
 //------------------------------------------------------------------------------------------------//
 //  Class: slave_seqs
