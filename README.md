@@ -9,3 +9,5 @@ https://www.unm.edu/~zbaker/ece238/slides/UART.pdf
 http://www.circuitbasics.com/basics-uart-communication/
 
 https://www.allaboutcircuits.com/technical-articles/the-uart-baud-rate-clock-how-accurate-does-it-need-to-be/
+
+http://www.circuitbasics.com/basics-uart-communication/
