@@ -11,3 +11,5 @@ http://www.circuitbasics.com/basics-uart-communication/
 https://www.allaboutcircuits.com/technical-articles/the-uart-baud-rate-clock-how-accurate-does-it-need-to-be/
 
 http://www.circuitbasics.com/basics-uart-communication/
+
+https://www.allaboutcircuits.com/technical-articles/back-to-basics-the-universal-asynchronous-receiver-transmitter-uart/
