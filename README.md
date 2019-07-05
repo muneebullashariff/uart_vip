@@ -13,3 +13,5 @@ https://www.allaboutcircuits.com/technical-articles/the-uart-baud-rate-clock-how
 http://www.circuitbasics.com/basics-uart-communication/
 
 https://www.allaboutcircuits.com/technical-articles/back-to-basics-the-universal-asynchronous-receiver-transmitter-uart/
+
+https://ip.cadence.com/ipportfolio/verification-ip/simulation-vip/other/uart-simulation-vip
