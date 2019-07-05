@@ -100,19 +100,47 @@ endclass:slave_driver
 
             
 						seq_item_port.get_next_item(req);
+
+            // TODO: Create new task - sample_data
+
+            // Waiting for the start condition
             @(negedge vif.slavedrv_cb.rx);    
-            //for rx
-            // wait(negedge vif.slavedrv_cb.rx);
-               #(((vif.bit_time)/2)*1);
-              for(int i=0;i<8;i++)
-                 begin
-                req.da[i] <= vif.slavedrv_cb.rx;   
-                 #(vif.bit_time);
-                 end
-             vif.slavedrv_cb.rx=1'b1;
-             #(vif.bit_time);
+
+            //#(((vif.bit_time)/2)*1);
+
+            // To make sure the sampling happens
+            // at the middle of the clock
+            #(vif.bit_time/2);
+
+            // sampling the data from rx line
+            for(int i=0;i<8;i++)
+            begin
+              req.rx_data[i] <= vif.slavedrv_cb.rx;   
+              #(vif.bit_time);
+            end
+
+            // Waiting for the stop condition
+            for(int i=0; i<cfg.no_of_stop_bits; i++)
+              if(vif.rx == 1'b1) begin
+                $display("Stop condition detected - %0d\n",(i+1));
+              end
+              #(vif.bit_time);
+            end
            
-						seq_item_port.item_done();
+            //// TODO: To support 1.5 stop bits
+            // typedef enum {STOP_BIT_ONE=1, STOP_BIT_ONE_HF=2, STOP_BIT_TWO=3} stop_bits_mode_e;
+            // stop_bits_mode_e stop_bit_mode;
+            //
+            // Waiting for the stop condition
+            // for(int i=0; i<cfg.stop_bit_mode; i++)
+            //   if(vif.rx == 1'b1) begin
+            //     $display("Stop condition detected - %0d\n",(i+1));
+            //   end
+            //   #(vif.bit_time/2);
+            // end
+            // 
+
+					  seq_item_port.item_done();
 					 
 	endtask:run_phase 
 

@@ -37,9 +37,9 @@ class slave_xtn extends uvm_sequence_item;
 //-------------------------------------------------------------------------------------------------
   `uvm_object_utils(slave_xtn)
 
-  bit tx;
-  bit rx;
-  rand int da[8];
+  //bit tx;
+  //bit rx;
+  bit [7:0] rx_data;
 	
 		extern function new(string name = "slave_xtn");
 		extern function void do_print(uvm_printer printer);

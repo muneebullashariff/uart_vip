@@ -40,6 +40,7 @@ class master_driver extends uvm_driver #(master_xtn);
 //------------------------------------------------------------------------------------------------//
 //  Virtual interface holds the pointer to the Interface.    
 //------------------------------------------------------------------------------------------------//
+    // TODO: Get the interface via modport
 		 virtual uart_if vif;
 		 master_agent_config w_cfg;
      env_config env_cfg;
@@ -91,41 +92,51 @@ endclass:master_driver
 	endfunction:connect_phase
 
 
+
 //----------------------------------------Run_Phase-----------------------------------------------//
 //  The run phase is used for the stimulus generation and checking activities of the Testbench. 
 //  The run phase is implemented as a task, and all uvm_component run tasks are executed in parallel.
 //------------------------------------------------------------------------------------------------//
-	task master_driver::run_phase(uvm_phase phase);
+task master_driver::run_phase(uvm_phase phase);
 
-    //initial condition
-			@(negedge vif.reset);
-       vif.masterdrv_cb.tx <= 0;
-      vif.masterdrv_cb.rx <=0;
-      vif.masterdrv_cb.da[8] <= 0;
-   
+  //initial reset condition
+  @(negedge vif.reset);
+  // Driving the reset values
+  vif.masterdrv_cb.tx <= 0;
 
-
-  //-----------------------------------------------------------------------------------------------
-  //task:body
   //Defining the time period required for each cycle transmission
-  //-----------------------------------------------------------------------------------------------
-   bit_time = (1/(env_cfg.buard_rate));
+  bit_time = (1/(env_cfg.buard_rate));
 
-      //for tx
-      forever
-				  begin
-            	seq_item_port.get_next_item(req);
-               vif.masterdrv_cb.tx=1'b0;
-                 #(bit_time);
-					          for(int i=0;i<8;i++)
-                    begin
-                     vif.masterdrv_cb.tx = req.da[i];
-                     #(bit_time);
-                     vif.masterdrv_cb.tx=1'b1;
-	                   end
-                     #(bit_time);
-             		seq_item_port.item_done();
-					end 
+  //for tx
+  forever
+  begin
+    seq_item_port.get_next_item(req);
+    drive_data(req);
+    seq_item_port.item_done();
+  end 
+endtask:run_phase
 
-	endtask:run_phase
+//-----------------------------------------------------------------------------
+// Task: drive_data
+//-----------------------------------------------------------------------------
+task master_driver::drive_data(master_xtn xtn);
 
+  // Start condition
+  vif.masterdrv_cb.tx=1'b0;
+  #(bit_time);
+
+  // Driving the data
+  // TODO: Need to support for 5,6,7,8 bit data
+  for(int i=0;i<8;i++)
+  begin
+    vif.masterdrv_cb.tx = req.da[i];
+    #(bit_time);
+  end
+
+  // TODO: Parity bit calculation and drive it
+
+  // Stop condition
+  vif.masterdrv_cb.tx=1'b1;
+  #(bit_time);
+
+endtask: drive_data

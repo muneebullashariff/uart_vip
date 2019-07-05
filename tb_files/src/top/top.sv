@@ -25,26 +25,35 @@
 //-------------------------------------------------------------------------------------------------
 module top;
 	
-    import test_pkg::*;
-		import uvm_pkg::*;
+  import test_pkg::*;
+  import uvm_pkg::*;
 		
+  logic reset_n;
 
-    bit reset;
-   initial
-  begin 
-  #10;
-  reset = ~reset;
+  initial
+  begin
+    // Asserting the active_low reset
+    reset_n = 0;
+    // De-asserting the active_low reset
+    #10 reset_n = ~reset_n;
   end
-		uart_if in();
 
- 	initial
-    begin
-		uvm_config_db #(virtual uart_if)::set(null,"*","vif_0",in);
+  // Instantiation of UART interface
+  uart_if intf(.reset(reset_n));
+
+  // TODO: Need to have the loopback mode
+  // assign intf.rx = intf.tx;
+  
+  initial
+  begin
+    // TODO: Need to suppor for multiple interfaces
+    // Temporarily having vif_0
+    uvm_config_db #(virtual uart_if)::set(null,"*","vif_0",intf);
      
-//running the basic test case
-	run_test("base_test");
-//  $display("running base_test in top");
-   end
+    //running the basic test case
+    run_test("base_test");
+    //  $display("running base_test in top");
+  end
  
 
    
