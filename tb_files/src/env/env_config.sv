@@ -26,12 +26,12 @@
 class env_config extends uvm_object;
 
  
-//------------------------------------------------------------------------------------------------//
+//--------------------------------------------------------------------------------------------------
 //  Factory registration is done by passing class name as argument.
 //  Factory Method in UVM enables us to register a class, object and variables inside the factory 
 //  so that we can override their type (if needed) from the test bench without needing to make any
 //  significant change in component structure.
-//------------------------------------------------------------------------------------------------//
+//--------------------------------------------------------------------------------------------------
 	`uvm_object_utils(env_config)
   
  	master_agent_config w_cfg[];
@@ -56,9 +56,9 @@ class env_config extends uvm_object;
   int buard_rate=9600;
   	
   
-  //---------------------------------------------
-  // Externally defined tasks and functions
-  //---------------------------------------------
+//---------------------------------------------
+// Externally defined tasks and functions
+//---------------------------------------------
 	extern function new(string name = "env_config");
 
 endclass: env_config
