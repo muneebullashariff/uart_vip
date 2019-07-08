@@ -15,7 +15,7 @@
 //
 //  ################################################################################################
 
-//  2) Use of Include Guards
+//  Use of Include Guards
 //`ifndef _master_driver_INCLUDED_
 //`define _master_driver_INCLUDED_
 
@@ -29,29 +29,20 @@
 class master_driver extends uvm_driver #(master_xtn);
 
 
-//------------------------------------------------------------------------------------------------//
-//  Factory registration is done by passing class name as argument.
 //  Factory Method in UVM enables us to register a class, object and variables inside the factory 
-//  so that we can override their type (if needed) from the test bench without needing to make any
-//  significant change in component structure.
-//------------------------------------------------------------------------------------------------//
 		`uvm_component_utils(master_driver)
 
-//------------------------------------------------------------------------------------------------//
 //  Virtual interface holds the pointer to the Interface.    
-//------------------------------------------------------------------------------------------------//
+
     // TODO: Get the interface via modport
 		 virtual uart_if vif;
 		 master_agent_config w_cfg;
      env_config env_cfg;
-
      
      real bit_time;
  
-//------------------------------------------------------------------------------------------------//
 //  The extern qualifier indicates that the body of the method (its implementation) is to be found 
-//  outside the declaration.
-//------------------------------------------------------------------------------------------------//
+//  outside the declaration
 		 extern function new (string name="master_driver", uvm_component parent);
 		 extern function void build_phase(uvm_phase phase);
 		 extern function void connect_phase(uvm_phase phase);
@@ -60,40 +51,43 @@ class master_driver extends uvm_driver #(master_xtn);
 endclass:master_driver
 
 
-//----------------------------------------New_Constructor-----------------------------------------//
+//-----------------------------------------------------------------------------------------------//
+//  constructor:new
 //  The new function is called as class constructor. On calling the new method it allocates the 
 //  memory and returns the address to the class handle. For the component class two arguments to be 
 //  passed. 
 //------------------------------------------------------------------------------------------------//
-	function master_driver::new(string name = "master_driver", uvm_component parent);
+function master_driver::new(string name = "master_driver", uvm_component parent);
 		super.new(name, parent);
-	endfunction:new
+endfunction:new
 
 
-//----------------------------------------Build_Phase---------------------------------------------//
+//-----------------------------------------------------------------------------------------------//
+//  phase:Build
 //  The build phases are executed at the start of the UVM Testbench simulation and their overall 
 //  purpose is to construct, configure and connect the Testbench component hierarchy.
 //  All the build phase methods are functions and therefore execute in zero simulation time.
 //------------------------------------------------------------------------------------------------//
-	function void master_driver::build_phase(uvm_phase phase);
-		super.build_phase(phase);
-		if(!uvm_config_db #(master_agent_config)::get(this,"","master_agent_config",w_cfg))
-			`uvm_fatal("CONFIG","Cannot get() w_cfg from uvm_config_db. Have you set() it?")
-	endfunction:build_phase
+function void master_driver::build_phase(uvm_phase phase);
+	super.build_phase(phase);
+	if(!uvm_config_db #(master_agent_config)::get(this,"","master_agent_config",w_cfg))
+	`uvm_fatal("CONFIG","Cannot get() w_cfg from uvm_config_db. Have you set() it?")
+endfunction:build_phase
 
 
-//----------------------------------------Connect_Phase-------------------------------------------//
+//------------------------------------------------------------------------------------------------//
+//  phase:connect
 //  The connect phase is used to make TLM connections between components or to assign handles to 
 //  testbench resources. It has to occur after the build method so that Testbench component 
 //  hierarchy could be in place and it works from the bottom-up of the hierarchy upwards.
 //------------------------------------------------------------------------------------------------//
-	function void master_driver::connect_phase(uvm_phase phase);
-		vif = w_cfg.vif;
-	endfunction:connect_phase
+function void master_driver::connect_phase(uvm_phase phase);
+	vif = w_cfg.vif;
+endfunction:connect_phase
 
 
-
-//----------------------------------------Run_Phase-----------------------------------------------//
+//-----------------------------------------------------------------------------------------------//
+//  phase:run
 //  The run phase is used for the stimulus generation and checking activities of the Testbench. 
 //  The run phase is implemented as a task, and all uvm_component run tasks are executed in parallel.
 //------------------------------------------------------------------------------------------------//
@@ -101,18 +95,19 @@ task master_driver::run_phase(uvm_phase phase);
 
   //initial reset condition
   @(negedge vif.reset);
+
   // Driving the reset values
   vif.masterdrv_cb.tx <= 0;
 
   //Defining the time period required for each cycle transmission
   bit_time = (1/(env_cfg.buard_rate));
 
-  //for tx
+  //for transmission
   forever
   begin
-    seq_item_port.get_next_item(req);
-    drive_data(req);
-    seq_item_port.item_done();
+  seq_item_port.get_next_item(req);
+  drive_data(req);
+  seq_item_port.item_done();
   end 
 endtask:run_phase
 
@@ -121,21 +116,21 @@ endtask:run_phase
 //-----------------------------------------------------------------------------
 task master_driver::drive_data(master_xtn xtn);
 
-  // Start condition
+// Start condition
   vif.masterdrv_cb.tx=1'b0;
   #(bit_time);
 
-  // Driving the data
+// Driving the data
   // TODO: Need to support for 5,6,7,8 bit data
   for(int i=0;i<8;i++)
   begin
-    vif.masterdrv_cb.tx = req.da[i];
-    #(bit_time);
+  vif.masterdrv_cb.tx = req.da[i];
+  #(bit_time);
   end
 
   // TODO: Parity bit calculation and drive it
 
-  // Stop condition
+// Stop condition
   vif.masterdrv_cb.tx=1'b1;
   #(bit_time);
 

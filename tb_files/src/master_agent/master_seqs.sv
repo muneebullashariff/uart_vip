@@ -14,9 +14,9 @@
 //  limitations under the License.
 //
 //  ################################################################################################
-//  2) Use of Include Guards
-//`ifndef _master_seqs_INCLUDED_
-//`define _master_seqs_INCLUDED_
+//  Use of Include Guards
+//  `ifndef _master_seqs_INCLUDED_
+//  `define _master_seqs_INCLUDED_
 
 //------------------------------------------------------------------------------------------------//
 //  Class: master_seqs
@@ -25,33 +25,26 @@
 //------------------------------------------------------------------------------------------------//
 class master_seqs extends uvm_sequence #(master_xtn);
 
-//------------------------------------------------------------------------------------------------//
-//  Factory registration is done by passing class name as argument.
 //  Factory Method in UVM enables us to register a class, object and variables inside the factory 
-//  so that we can override their type (if needed) from the test bench without needing to make any
-//  significant change in component structure.
-//------------------------------------------------------------------------------------------------//
 	`uvm_object_utils(master_seqs)
 
-  //creating handle for master transaction
+//creating handle for master transaction
   master_xtn req;
   
-//------------------------------------------------------------------------------------------------//
-//  The extern qualifier indicates that the body of the method (its implementation) is to be found 
-//  outside the declaration.
-//------------------------------------------------------------------------------------------------//
-	extern function new(string name="master_seqs");
+//  The extern qualifier indicates that its implementation is to be found outside the declaration.
+extern function new(string name="master_seqs");
   extern task body();
 endclass:master_seqs 
 
 
-//----------------------------------------New_Constructor-----------------------------------------//
+//-----------------------------------------------------------------------------------------------//
+//  constructor:new
 //  The new function is called as class constructor. On calling the new method it allocates the 
 //  memory and returns the address to the class handle.
 //------------------------------------------------------------------------------------------------//
-	function master_seqs::new(string name="master_seqs");
-		super.new(name);
-	endfunction:new
+function master_seqs::new(string name="master_seqs");
+	super.new(name);
+endfunction:new
 
 
 //-----------------------------------------------------------------------------------------------
@@ -62,11 +55,12 @@ task master_seqs::body();
   req=master_xtn::type_id::create("req");
   repeat(1)
   begin
-    start_item(req);
-    if(! (req.randomize()) begin
-      `uvm_error(get_type_name(), "Not able to randomize req\n")
-    end
-    finish_item(req);
+  start_item(req);
+  if(! (req.randomize()) 
+   begin
+  `uvm_error(get_type_name(), "Not able to randomize req\n")
+   end
+  finish_item(req);
   end
 endtask
 

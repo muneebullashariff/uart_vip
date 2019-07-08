@@ -33,25 +33,41 @@ class scoreboard extends uvm_scoreboard;
 
 env_config ecfg;
 
+//Tlm analysis FIFO's connecting from both the monitors to scoreboard
 uvm_tlm_analysis_fifo #(master_xtn) wrh[];
 uvm_tlm_analysis_fifo #(slave_xtn) rdh[];
+
 
 master_xtn wxtn;
 slave_xtn rxtn;
 
+//handles to store the modifications
 master_xtn loc_wxtn;
 slave_xtn loc_rxtn;
 
-maaster_xtn w_que[$];
+//creating a queue to perform FIFO operation
+master_xtn w_que[$];
 slave_xtn r_que[$];
 
 
-
+//-----------------------------------------------------------------------------
+// Constructor: new
+// Initializes the config_template class object
+//
+// Parameters:
+//  name - instance name of the config_template
+//  parent - parent under which this component is created
+//-----------------------------------------------------------------------------
 function new(string name="scoreboard",uvm_component parent);
 super.new(name,parent);
 mem_coverage=new;
 endfunction 
 
+
+//-----------------------------------------------------------------------------
+//phase:build
+//This will execute all its methods in zero simulation time
+//-----------------------------------------------------------------------------
 function void build_phase(uvm_phase phase);
 if(!uvm_config_db#(env_config)::get(this,"","ENV_CONFIG",ecfg))
   `uvm_error("SB","COULDNT GET")
@@ -67,8 +83,10 @@ rdh[i]=new($sformatf("rdh[%0d]",i),this);
 endfunction
 
 
-
-
+//------------------------------------------------------------------------------
+//phase:run
+//In this task we are trying to get transactions and pushing them into the queue
+//-------------------------------------------------------------------------------
 task run_phase(uvm_phase phase);
 forever
   begin
@@ -89,6 +107,12 @@ forever
   end
 endtask
 
+
+//--------------------------------------------------------------------------------------
+//phase:check-phase
+//this phase provide the information about the data match whether it is successful 
+//or un succesful
+//----------------------------------------------------------------------------------------
 function void check_phase(uvm_phase phase);
   foreach(w_que[i])
     begin

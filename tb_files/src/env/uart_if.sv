@@ -25,52 +25,45 @@ interface uart_if(input reset);
   logic tx;
   logic rx;
 
-  // TODO: The below signals should be in driver
-  //logic da[8];
-  //real bit_time;
-   
-  initial
-  begin
-   //  bit_time = (1/(env_cfg.buard_rate));
-  end
+// TODO: The below signals should be in driver
+//logic da[8];
+//real bit_time;
+  
 
-    //clocking block for master driver
-    clocking masterdrv_cb@(negedge tx);
-      //default input #1 output #1;
+//clocking block for master driver
+clocking masterdrv_cb@(negedge tx);
       output tx;
       output rx;
       output da;
-    endclocking
+endclocking
 
-    //clocking block for master monitor
-    clocking mastermon_cb@(negedge tx);
-      //default input #1 output #0;
+//clocking block for master monitor
+clocking mastermon_cb@(negedge tx);
       input tx;
       input rx;
       input da;
-    endclocking
+endclocking
 
-    //clocking block for slave driver
-    clocking slavedrv_cb@(negedge rx);
-      //default input #1 output #0;
+//clocking block for slave driver
+clocking slavedrv_cb@(negedge rx);
     output da;
     output rx;
-    endclocking
+endclocking
 
-    //clocking block for slave monitor
-    clocking slavemon_cb@(negedge rx);
-      //default input #1 output #0;
+//clocking block for slave monitor
+clocking slavemon_cb@(negedge rx);
       input tx;
       input da;
       input rx;
-    endclocking
+endclocking
 
-    modport MDRIV_MP(clocking masterdrv_cb, input reset);
-    modport MMON_MP(clocking mastermon_cb, input reset);
-    modport SDRV_MP(clocking slavedrv_cb, input reset);
-    modport SMON_MP(clocking slavemon_cb, input reset);
+
+modport MDRIV_MP(clocking masterdrv_cb, input reset);
+modport MMON_MP(clocking mastermon_cb, input reset);
+modport SDRV_MP(clocking slavedrv_cb, input reset);
+modport SMON_MP(clocking slavemon_cb, input reset);
     
-  endinterface
+endinterface
 
 
 

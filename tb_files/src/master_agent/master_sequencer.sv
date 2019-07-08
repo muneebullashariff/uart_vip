@@ -28,22 +28,19 @@
 //------------------------------------------------------------------------------------------------//
 class master_sequencer extends uvm_sequencer #(master_xtn);
 
-//------------------------------------------------------------------------------------------------//
-//  Factory registration is done by passing class name as argument.
 //  Factory Method in UVM enables us to register a class, object and variables inside the factory 
-//  so that we can override their type (if needed) from the test bench without needing to make any
-//  significant change in component structure.
-//------------------------------------------------------------------------------------------------//
-	`uvm_component_utils(master_sequencer)
+  `uvm_component_utils(master_sequencer)
 
-	extern function new(string name="master_sequencer", uvm_component parent);
+	 extern function new(string name="master_sequencer", uvm_component parent);
 endclass:master_sequencer
 
-//----------------------------------------New_Constructor-----------------------------------------//
+
+//-----------------------------------------------------------------------------------------------//
+//  constructor:new
 //  The new function is called as class constructor. On calling the new method it allocates the 
 //  memory and returns the address to the class handle.
 //------------------------------------------------------------------------------------------------//
-	function master_sequencer::new(string name = "master_sequencer", uvm_component parent);
-		super.new(name, parent);
-	endfunction:new
+function master_sequencer::new(string name = "master_sequencer", uvm_component parent);
+	super.new(name, parent);
+endfunction:new
 

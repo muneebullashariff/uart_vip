@@ -25,23 +25,14 @@
 //------------------------------------------------------------------------------------------------//
 class master_agent_config extends uvm_object;
 
-//------------------------------------------------------------------------------------------------//
-//  Factory registration is done by passing class name as argument.
 //  Factory Method in UVM enables us to register a class, object and variables inside the factory 
-//  so that we can override their type (if needed) from the test bench without needing to make any
-//  significant change in component structure.
-//------------------------------------------------------------------------------------------------//
 	`uvm_object_utils(master_agent_config)
 
-//------------------------------------------------------------------------------------------------//
 //  Virtual interface holds the pointer to the Interface.
-//------------------------------------------------------------------------------------------------//
 		virtual uart_if vif;
 
-//------------------------------------------------------------------------------------------------//
-//  Convenience value to define whether a component, usually an agent, is in activeù mode or
-//  passiveù mode.
-//------------------------------------------------------------------------------------------------//
+//  Convenience value to define whether a component, usually an agent, is in active mode or
+//  passive mode.
 	uvm_active_passive_enum is_active ;  
 
 //------------------------------------------------------------------------------------------------//
@@ -49,13 +40,13 @@ class master_agent_config extends uvm_object;
 //  outside the declaration.
 //------------------------------------------------------------------------------------------------//
 	extern function new (string name = "master_agent_config");
+endclass
 
-	endclass
-
-//----------------------------------------New_Constructor-----------------------------------------//
+//------------------------------------------------------------------------------------------------//
+//  constructor:new
 //  The new function is called as class constructor. On calling the new method it allocates the 
 //  memory and returns the address to the class handle.
 //------------------------------------------------------------------------------------------------//
-	function master_agent_config::new(string name = "master_agent_config");
-		super.new(name);
-	endfunction:new
+function master_agent_config::new(string name = "master_agent_config");
+	super.new(name);
+endfunction:new
