@@ -31,11 +31,11 @@
 //  environment.
 //-----------------------------------------------------------------------------
 class vbase_seq extends uvm_sequence #(uvm_sequence_item);
-  `uvm_object_utils(vbase_seq)
+	`uvm_object_utils(vbase_seq)
 
 	 master_sequencer master_seqrh[];
 	 slave_sequencer slave_seqrh[];
-   virtual_sequencer vseqrh;	
+         virtual_sequencer vseqrh;	
 
 	 env_config e_cfg;
 
@@ -47,14 +47,14 @@ extern function new(string name="vbase_seq");
 endclass
 
 
-//-----------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------
 // Constructor: new
 // Initializes the config_template class object
 //
 // Parameters:
 //  name - instance name of the config_template
 //  parent - parent under which this component is created
-//-----------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------
 function vbase_seq::new(string name="vbase_seq");
 		super.new(name);
 endfunction
@@ -66,15 +66,15 @@ endfunction
 //---------------------------------------------------------------------------------------------
 task vbase_seq::body();
 	
-	if(!uvm_config_db #(env_config)::get(null,get_full_name,"env_config",e_cfg))
-	`uvm_fatal("CONFIG","cannot get() e_cfg from uvm_config_db. Have you set() it?")
+	 if(!uvm_config_db #(env_config)::get(null,get_full_name,"env_config",e_cfg))
+	 `uvm_fatal("CONFIG","cannot get() e_cfg from uvm_config_db. Have you set() it?")
 	
 	 master_seqrh=new[e_cfg.no_of_wagent];
 	 slave_seqrh=new[e_cfg.no_of_ragent];
 	 assert($cast(vseqrh,m_sequencer)) 
 	 else 
 	 begin
-   `uvm_error("BODY", "Error in $cast of virtual sequencer")
+   	 `uvm_error("BODY", "Error in $cast of virtual sequencer")
 	 end
 	
 	 foreach(master_seqrh[i])
@@ -84,7 +84,7 @@ task vbase_seq::body();
  			
 	 foreach(slave_seqrh[i])
 	 begin
-   slave_seqrh[i] = vseqrh.slave_seqrh[i];
+   	 slave_seqrh[i] = vseqrh.slave_seqrh[i];
 	 end
 
 endtask: body
