@@ -29,7 +29,7 @@
 class master_sequencer extends uvm_sequencer #(master_xtn);
 
 //  Factory Method in UVM enables us to register a class, object and variables inside the factory 
-  `uvm_component_utils(master_sequencer)
+  	`uvm_component_utils(master_sequencer)
 
 	 extern function new(string name="master_sequencer", uvm_component parent);
 endclass:master_sequencer
