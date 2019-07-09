@@ -56,7 +56,7 @@ endclass
 //  parent - parent under which this component is created
 //-------------------------------------------------------------------------------------------------------
 function vbase_seq::new(string name="vbase_seq");
-		super.new(name);
+	super.new(name);
 endfunction
 
 
