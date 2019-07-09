@@ -29,11 +29,11 @@ class master_seqs extends uvm_sequence #(master_xtn);
 	`uvm_object_utils(master_seqs)
 
 //creating handle for master transaction
-  master_xtn req;
+  	master_xtn req;
   
 //  The extern qualifier indicates that its implementation is to be found outside the declaration.
 extern function new(string name="master_seqs");
-  extern task body();
+  	extern task body();
 endclass:master_seqs 
 
 
@@ -52,16 +52,16 @@ endfunction:new
 //This gives the information about the starting of driver sequencer handshake mechanism
 //-----------------------------------------------------------------------------------------------
 task master_seqs::body();
-  req=master_xtn::type_id::create("req");
-  repeat(1)
-  begin
-  start_item(req);
-  if(! (req.randomize()) 
-   begin
-  `uvm_error(get_type_name(), "Not able to randomize req\n")
-   end
-  finish_item(req);
-  end
+  	req=master_xtn::type_id::create("req");
+ 	repeat(1)
+  	begin
+  	start_item(req);
+  	if(! (req.randomize()) 
+   	begin
+  	`uvm_error(get_type_name(), "Not able to randomize req\n")
+   	end
+  	finish_item(req);
+  	end
 endtask
 
 
