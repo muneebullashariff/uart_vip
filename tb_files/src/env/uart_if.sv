@@ -32,16 +32,16 @@ interface uart_if(input reset);
 
 //clocking block for master driver
 clocking masterdrv_cb@(negedge tx);
-      output tx;
-      output rx;
-      output da;
+    output tx;
+    output rx;
+    output da;
 endclocking
 
 //clocking block for master monitor
 clocking mastermon_cb@(negedge tx);
-      input tx;
-      input rx;
-      input da;
+    input tx;
+    input rx;
+    input da;
 endclocking
 
 //clocking block for slave driver
@@ -52,9 +52,9 @@ endclocking
 
 //clocking block for slave monitor
 clocking slavemon_cb@(negedge rx);
-      input tx;
-      input da;
-      input rx;
+    input tx;
+    input da;
+    input rx;
 endclocking
 
 
