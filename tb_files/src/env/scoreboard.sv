@@ -92,15 +92,15 @@ forever
   begin
 
     fork
-	        begin
-          wrh[0].get(wxtn);
-	 	       w_que.push_front(wxtn);
-        	end
+     begin
+     wrh[0].get(wxtn);
+     w_que.push_front(wxtn);
+     end
   
-        	begin
-	        rdh[0].get(rxtn);
-	        r_que.push_front(rxtn);
-	       	end
+      begin
+      rdh[0].get(rxtn);
+      r_que.push_front(rxtn);
+      end
    join
 
 
@@ -119,16 +119,16 @@ function void check_phase(uvm_phase phase);
     loc_wxtn=w_que.pop_back;
     loc_rxtn=r_que.pop_back;
 
-           for(int i=0;i<8;i++)
-           begin
-             if(loc_wxtn.da[i]==loc_rxtn.da[i])
-             $display("SUCCESFUL COMPARISION");
-             else
-	          $display("DATA_MISMATCH");
-            end
-            else
-            $display("READING FROM UN-WRITTEN LOCATION");
-    end
+      for(int i=0;i<8;i++)
+      begin
+      if(loc_wxtn.da[i]==loc_rxtn.da[i])
+      $display("SUCCESFUL COMPARISION");
+      else
+      $display("DATA_MISMATCH");
+      end
+      else
+      $display("READING FROM UN-WRITTEN LOCATION");
+     end
  
 endfunction
 
