@@ -29,14 +29,14 @@
 class master_monitor extends uvm_monitor;
 
 //  Factory Method in UVM enables us to register a class, object and variables inside the factory 
-  `uvm_component_utils(master_monitor)
+  	`uvm_component_utils(master_monitor)
 
 //  Virtual interface holds the pointer to the Interface.  
 	virtual uart_if vif;
 
 //  w_cfg is the handle of master_agent_config which is extended from the configuration class    
-  master_agent_config w_cfg;
-  master_driver m_drv;
+  	master_agent_config w_cfg;
+  	master_driver m_drv;
 
 //  TLM Port:uvm_analysis port consisting of inbuilt write method
 	uvm_analysis_port #(master_xtn) monitor_port;
@@ -51,7 +51,7 @@ class master_monitor extends uvm_monitor;
 	extern function void connect_phase (uvm_phase phase);
 	extern task run_phase(uvm_phase phase);
 	extern task collect_data();
-endclass
+endclass:master_monitor
 
 
 //------------------------------------------------------------------------------------------------//
@@ -61,7 +61,7 @@ endclass
 //  passed. 
 //------------------------------------------------------------------------------------------------//
 function master_monitor :: new(string name ="master_monitor",uvm_component parent);
-  super.new(name, parent);
+  	super.new(name, parent);
 	monitor_port = new("monitor_port", this);
 endfunction:new
 
@@ -96,8 +96,8 @@ endfunction:connect_phase
 //  The run phase is implemented as a task, and all uvm_component run tasks are executed in parallel.
 //------------------------------------------------------------------------------------------------//
 task master_monitor::run_phase(uvm_phase phase);
-  forever
-  begin
+  	forever
+  	begin
 	collect_data();
 	end 
 endtask:run_phase
@@ -110,19 +110,19 @@ endtask:run_phase
 //------------------------------------------------------------------------------------------------//
 task master_monitor::collect_data();
 	master_xtn data_sent;
-  forever
-  begin
-  data_sent=master_xtn::type_id::create("data_sent");
-  data_sent.tx=vif.masterdrv_cb.tx;
-  #(m_drv.bit_time)
-  for(int i=0;i<8;i++)
-   begin
-   data_sent.da[i]=vif.masterdrv_cb.da[i];
-   #(m_drv.bit_time);
-   end
-  @(vif.mastermon_cb);
-  monitor_port.write(data_sent);
-  end
-	endtask:collect_data
+  	forever
+  	begin
+  	data_sent=master_xtn::type_id::create("data_sent");
+  	data_sent.tx=vif.masterdrv_cb.tx;
+  	#(m_drv.bit_time)
+  	for(int i=0;i<8;i++)
+   	begin
+   	data_sent.da[i]=vif.masterdrv_cb.da[i];
+   	#(m_drv.bit_time);
+   	end
+  	@(vif.mastermon_cb);
+  	monitor_port.write(data_sent);
+  	end
+endtask:collect_data
 
 
