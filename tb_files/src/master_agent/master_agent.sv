@@ -71,17 +71,17 @@ function void master_agent::build_phase(uvm_phase phase);
   
 //The configuration database provides access to a centralized database, where type specific 
 //  information can be stored and received.
-		if(!uvm_config_db #(master_agent_config)::get(this,"","master_agent_config",w_cfg))
-			`uvm_fatal("CONFIG", "cannot get() w_cfg from uvm_config_db. Have you set it?")
+ 	if(!uvm_config_db #(master_agent_config)::get(this,"","master_agent_config",w_cfg))
+	`uvm_fatal("CONFIG", "cannot get() w_cfg from uvm_config_db. Have you set it?")
 
 //  For Active UVM Agent monitor class is created along with the Sequencer and Driver but for the
 //  Passive UVM Agent only Monitor is created.
-		monh=master_monitor::type_id::create("monh", this);
-		if(w_cfg.is_active==UVM_ACTIVE);
-		 begin
-		 drvh=master_driver::type_id::create("drvh", this);
-		 m_sequencer=master_sequencer::type_id::create("m_sequencer", this);
-     end
+	monh=master_monitor::type_id::create("monh", this);
+	if(w_cfg.is_active==UVM_ACTIVE);
+	begin
+	drvh=master_driver::type_id::create("drvh", this);
+	m_sequencer=master_sequencer::type_id::create("m_sequencer", this);
+        end
 endfunction:build_phase
 
 
