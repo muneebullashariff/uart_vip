@@ -28,11 +28,11 @@ class master_agent extends uvm_agent;
 
 //  Factory registration is done by passing class name as argument.
 
- `uvm_component_utils(master_agent)
+ 	`uvm_component_utils(master_agent)
 	
 
 //  w_cfg is the handle of master_agent_config which is extended from the configuration class.
-  master_agent_config w_cfg;
+  	master_agent_config w_cfg;
 
 //  Handles for the driver, monitor, sequencer is also defined here
 	master_driver drvh;
