@@ -31,7 +31,7 @@
 //------------------------------------------------------------------------------------------------//
 class virtual_sequencer extends uvm_sequencer #(uvm_sequence_item);
 
- `uvm_component_utils(virtual_sequencer)
+       `uvm_component_utils(virtual_sequencer)
 	
 	master_sequencer master_seqrh[];
 	slave_sequencer slave_seqrh[];
@@ -42,14 +42,14 @@ class virtual_sequencer extends uvm_sequencer #(uvm_sequence_item);
 endclass
 
 
-//-----------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------
 // Constructor: new
 // Initializes the config_template class object
 //
 // Parameters:
 //  name - instance name of the config_template
 //  parent - parent under which this component is created
-//-----------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------
 function virtual_sequencer::new(string name= "virtual_sequencer", uvm_component parent);
 	super.new(name, parent);
 endfunction
@@ -68,5 +68,5 @@ function void virtual_sequencer::build_phase(uvm_phase phase);
 	if(!uvm_config_db #(env_config)::get(this,"","env_config",e_cfg))
 	`uvm_fatal("CONFIG","Cannot get() e_cfg from uvm_congig_db. Have you set it?")
 	master_seqrh=new[e_cfg.no_of_wagent];
-  slave_seqrh=new[e_cfg.no_of_ragent];
+  	slave_seqrh=new[e_cfg.no_of_ragent];
 endfunction
