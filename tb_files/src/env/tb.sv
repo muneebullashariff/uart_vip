@@ -54,7 +54,7 @@ endclass
 //  parent - parent under which this component is created
 //-----------------------------------------------------------------------------
 function tb::new(string name = "tb", uvm_component parent);
-		super.new(name, parent);
+	super.new(name, parent);
 endfunction:new
 
 
@@ -67,23 +67,23 @@ endfunction:new
 //----------------------------------------------------------------------------- 
 function void tb::build_phase(uvm_phase phase);
 	if(!uvm_config_db #(env_config)::get(this, "","env_config",e_cfg))
-			`uvm_fatal("CONFIG", "Cannot get() e_cfg  from uvm_config")
+	`uvm_fatal("CONFIG", "Cannot get() e_cfg  from uvm_config")
 					
 	 super.build_phase(phase);
 
 	if(e_cfg.has_wtop==1) 
-	 wtop=master_agent_top::type_id::create("wtop",this);
+	wtop=master_agent_top::type_id::create("wtop",this);
 
 	if(e_cfg.has_rtop==1) 
-   rtop=slave_agent_top::type_id::create("rtop",this);
+   	rtop=slave_agent_top::type_id::create("rtop",this);
 							
 	if(e_cfg.has_virtual_sequencer)
-	 v_seqrh=virtual_sequencer::type_id::create("v_seqrh",this);
+	v_seqrh=virtual_sequencer::type_id::create("v_seqrh",this);
 
-  if(e_cfg.has_scoreboard) 
-	 begin
-	 sb=scoreboard::type_id::create("sb",this);
-   end
+ 	if(e_cfg.has_scoreboard) 
+	begin
+	sb=scoreboard::type_id::create("sb",this);
+   	end
           
 endfunction:build_phase
 
@@ -95,19 +95,19 @@ endfunction:build_phase
 //------------------------------------------------------------------------------------------------
 function void tb::connect_phase (uvm_phase phase);
 	if(e_cfg.has_wtop==1) 
-  begin
-	for(int i=0; i<e_cfg.no_of_wagent; i++)
+  	begin
+	 for(int i=0; i<e_cfg.no_of_wagent; i++)
 	 begin
 	 v_seqrh.master_seqrh[i] = wtop.wagent[i].m_sequencer;
 	 wtop.wagent[i].monh.monitor_port.connect(sb.wfifo[i].analysis_export);
-   end
+  	 end
 	end
 			
 	if(e_cfg.has_rtop==1) 
-  begin
-	for(int i=0; i<e_cfg.no_of_ragent; i++)
+ 	begin
+	 for(int i=0; i<e_cfg.no_of_ragent; i++)
 	 begin
-   rtop.ragent[i].monh.monitor_port.connect(sb.rfifo[i].analysis_export);
+   	 rtop.ragent[i].monh.monitor_port.connect(sb.rfifo[i].analysis_export);
 	 v_seqrh.slave_seqrh[i] = rtop.ragent[i].m_sequencer;
 	 end
 	end
