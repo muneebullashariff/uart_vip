@@ -72,7 +72,7 @@ endclass: env_config
 //  name - instance name of the config_template
 //-----------------------------------------------------------------------------
 function env_config::new(string name = "env_config");
-  super.new(name);
+	super.new(name);
 endfunction:new
 
 
