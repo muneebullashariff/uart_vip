@@ -69,12 +69,11 @@ function void master_agent_top::build_phase(uvm_phase phase);
 	 wagent=new[e_cfg.no_of_wagent];
 	 foreach(wagent[i])
 	 begin
-	 uvm_config_db #(master_agent_config)::set(this,$sformatf("wagent[%0d]*",i), "master_agent_config"
-   ,e_cfg.w_cfg[i]);
+	 uvm_config_db #(master_agent_config)::set(this,$sformatf("wagent[%0d]*",i), "master_agent_config",e_cfg.w_cfg[i]);
 	 wagent[i]=master_agent::type_id::create($sformatf("wagent[%0d]",i), this);
 	 end
 	 
-   super.build_phase(phase);				
+   	 super.build_phase(phase);				
 endfunction:build_phase 
 
 /*
