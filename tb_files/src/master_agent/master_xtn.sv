@@ -24,16 +24,16 @@
 
 class master_xtn extends uvm_sequence_item;
 
-//Factory Method in UVM enables us to register a class, object and variables inside the factory.
-  `uvm_object_utils(master_xtn
+//Factory Method in UVM enables us to register a class, object and variables inside the factory
+	`uvm_object_utils(master_xtn)
 
-  rand bit [7:0] tx_data;
+  	rand bit [7:0] tx_data;
 
 //---------------------------------------------------------------------------------------------
 //Defining external tasks and functions
 //---------------------------------------------------------------------------------------------
-	extern function new(string name = "master_xtn");
-	extern function void do_print(uvm_printer printer);
+   	extern function new(string name = "master_xtn");
+   	extern function void do_print(uvm_printer printer);
 endclass:master_xtn
 
 
@@ -50,7 +50,7 @@ endfunction:new
 
 //Do_Print method
 function void  master_xtn::do_print (uvm_printer printer);
-  super.do_print(printer);
+  	super.do_print(printer);
 // string name bitstream value size radix for printing 
 endfunction:do_print
 
