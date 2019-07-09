@@ -45,15 +45,15 @@ class env_config extends uvm_object;
 	bit has_ragent = 1;
 	bit has_wtop = 1;
 	bit has_rtop = 1;
-  bit has_buard_rate= 1;
+ 	bit has_buard_rate= 1;
 
 	bit has_virtual_sequencer = 1;
 	int no_of_wagent;
 	int no_of_ragent;
 	int no_of_wtop;
-  int no_of_rtop;
+  	int no_of_rtop;
 	int no_of_sb=1;
-  int buard_rate=9600;
+ 	int buard_rate=9600;
   	
   
 //---------------------------------------------
