@@ -30,10 +30,8 @@
 //------------------------------------------------------------------------------------------------
 package test_pkg;
 
-
-  import uvm_pkg::*;
+   import uvm_pkg::*;
   `include "uvm_macros.svh"
-
 
   `include "../src/master_agent/master_xtn.sv"
   `include "../src/master_agent/master_agent_config.sv"
@@ -59,9 +57,7 @@ package test_pkg;
   `include "../src/env/virtual_seqs.sv"
 
   `include "../src/env/tb.sv"
- // `include "scoreboard.sv"
+  `include "scoreboard.sv"
 
-
-`include "../src/test/base_test.sv"
-
+  `include "../src/test/base_test.sv"
 endpackage
