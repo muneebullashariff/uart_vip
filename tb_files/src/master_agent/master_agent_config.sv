@@ -29,7 +29,7 @@ class master_agent_config extends uvm_object;
 	`uvm_object_utils(master_agent_config)
 
 //  Virtual interface holds the pointer to the Interface.
-		virtual uart_if vif;
+	virtual uart_if vif;
 
 //  Convenience value to define whether a component, usually an agent, is in active mode or
 //  passive mode.
